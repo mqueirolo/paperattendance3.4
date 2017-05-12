@@ -162,32 +162,39 @@ if ($ncourses>0){
 	echo html_writer::table($table);
 	echo $OUTPUT->paging_bar($ncourses, $page, $perpage, $url);
 }
+
+
+$modal = '<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;">
+			  <div class="modal-dialog modal-lg" role="document">
+			    	<div class="modal-content">
+			    		<div class="modal-header">
+			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        		<h4 class="modal-title" id="exampleModalLabel">Quick Print</h4>
+			      		</div>
+		      		<div class="modal-body quickprintappend" style="height:70vh">
+			
+		      		</div>
+		      		<div class="modal-footer">
+    	       	    	<button type="button" class="btn btn-info printbutton" data-dismiss="modal">Imprimir</button>
+			       		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      		</div>
+	      		</div>
+	  		</div>
+		</div>';
+
+echo html_writer::div($modal, "modaldiv");
+
 echo $OUTPUT->footer();
 
 ?>
-
-<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Quick Print</h4>
-      </div>
-      <div class="modal-body quickprintappend" style="height:70vh">
-
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-info printbutton" data-dismiss="modal">Imprimir</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 <script>
 jQuery('#exampleModal').modal({
 	  keyboard: true,
 	  show: false
 })
+$( document ).ready(function() {
+    $('#filter').focus();
+});
 </script>
 <script type="text/javascript">
 	var filter = $('#filter');
@@ -250,6 +257,6 @@ jQuery('#exampleModal').modal({
 		});
 
 	$( document ).on( "click", ".modal-backdrop", function() {
-		jQuery('#exampleModal').modal('hide'); 
+		jQuery('#exampleModal').modal('hide');
 	});
 </script>

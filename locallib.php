@@ -81,7 +81,7 @@ function paperattendance_get_students_for_printing($course) {
  */
 function paperattendance_students_list($contextid, $course){
 	global $CFG;
-	//TODO: Add enrolments for omega, Remember change "manual".
+	
 	$enrolincludes = explode("," ,$CFG->paperattendance_enrolmethod);
 //	$filedir = $CFG->dataroot . "/temp/emarking/$contextid";
 //	$userimgdir = $filedir . "/u";
@@ -519,94 +519,6 @@ function paperattendance_save_student_presence($sessid, $studentid, $status, $gr
 	$sessioninsert->lastmodified = time();
 	$sessioninsert->grayscale = $grayscale;
 	$lastinsertid = $DB->insert_record('paperattendance_presence', $sessioninsert, false);
-}
-
-
-// //returns orientation {straight, rotated, error}
-// //pdf = pdfname + extension (.pdf)
-function paperattendance_get_orientation($path, $pdf, $page){
-	//TODO: la pagina donde se utiliza la funcion debe incluir el require_once
-	global $CFG;
-	require_once ($CFG->dirroot . '/local/paperattendance/phpdecoder/QrReader.php');
-
-	$pdfexplode = explode(".",$pdf);
-	$pdfname = $pdfexplode[0];
-	$qrpath = $pdfname.'qr.png';
-
-	//save the pdf page as a png
-	$myurl = $pdf.'['.$page.']';
-	$image = new Imagick($path.$myurl);
-	$image->setResolution(100,100);
-	$image->setImageFormat( 'png' );
-	$image->writeImage( $path.$pdfname.'.png' );
-	$image->clear();
-
-	//check if there's a qr on the top right corner
-	$imagick = new Imagick();
-	$imagick->setResolution(100,100);
-	$imagick->readImage( $path.$pdfname.'.png' );
-	$imagick->setImageType( imagick::IMGTYPE_GRAYSCALE );
-
-	$height = $imagick->getImageHeight();
-	$width = $imagick->getImageWidth();
-
-	$qrtop = $imagick->getImageRegion($width*0.25, $height*0.14, $width*0.652, $height*0.014);
-	$qrtop->writeImage($path."topright".$qrpath);
-	
-	unlink($path.$pdfname.'.png');
-	// QR
-	$qrcodetop = new QrReader($path."topright".$qrpath);
-	$texttop = $qrcodetop->text(); //return decoded text from QR Code
-
-	if($texttop == "" || $texttop == " " || empty($texttop)){
-
-		//check if there's a qr on the bottom right corner
-		$qrbottom = $imagick->getImageRegion($width*0.25, $height*0.14, $width*0.652, $height*0.846);
-		$qrbottom->writeImage($path."bottomright".$qrpath);
-
-		// QR
-		$qrcodebottom = new QrReader($path."bottomright".$qrpath);
-		$textbottom = $qrcodebottom->text(); //return decoded text from QR Code
-
-		if($textbottom == "" || $textbottom == " " || empty($textbottom)){
-
-			//check if there's a qr on the top left corner
-			$qrtopleft = $imagick->getImageRegion($width*0.25, $height*0.14, $width*0.1225, $height*0.014);
-			$qrtopleft->writeImage($path."topleft".$qrpath);
-
-			// QR
-			$qrcodetopleft = new QrReader($path."topleft".$qrpath);
-			$texttopleft = $qrcodetopleft->text(); //return decoded text from QR Code
-
-			if($texttopleft == "" || $texttopleft == " " || empty($texttopleft)){
-					
-				//check if there's a qr on the top left corner
-				$qrbottomleft = $imagick->getImageRegion($width*0.25, $height*0.14, $width*0.1255, $height*0.846);
-				$qrbottomleft->writeImage($path."bottomleft".$qrpath);
-					
-				// QR
-				$qrcodebottomleft = new QrReader($path."bottomleft".$qrpath);
-				$textbottomleft = $qrcodebottomleft->text(); //return decoded text from QR Code
-					
-				if($textbottomleft == "" || $textbottomleft == " " || empty($textbottomleft)){
-					return "error";
-				}
-				else{
-					return "rotated";
-				}
-			}
-			else{
-				return "rotated";
-			}
-		}
-		else{
-			return "straight";
-		}
-	}
-	else{
-		return "straight";
-	}
-	$imagick->clear();
 }
 
 function paperattendance_get_qr_text($path, $pdf){
@@ -1439,7 +1351,7 @@ function paperattendance_exporttoexcel($title, $header, $filename, $data, $descr
 	exit;
 }
 
-function paperattendance_read_csv($path, $csvname){
+function paperattendance_read_csv($file, $path, $csvname, $pdffilename){
 	global $DB, $CFG, $USER;
 
 	$omegafailures = array();
@@ -1447,7 +1359,6 @@ function paperattendance_read_csv($path, $csvname){
 	if (($handle = fopen($path."/".$csvname, "r")) !== FALSE) {
 		while (($data = fgetcsv($handle, 50, ";")) !== FALSE) {
 			if($row > 0){
-				$filename = $data[0];
 				$qrcode = $data[27];
 
 				$qrinfo = explode("*",$qrcode);
@@ -1465,7 +1376,7 @@ function paperattendance_read_csv($path, $csvname){
 
 				$sessdoesntexist = paperattendance_check_session_modules($module, $course, $time);
 				if( $sessdoesntexist == "perfect"){
-					$sessid = paperattendance_insert_session($course, $requestorid, $USER-> id, $filename, $description);
+					$sessid = paperattendance_insert_session($course, $requestorid, $USER-> id, $pdffilename, $description);
 					paperattendance_insert_session_module($module, $sessid, $time);
 					foreach ($studentlist as $student){
 						paperattendance_save_student_presence($sessid, $student->id, '0', NULL); //save all students as absents at first
@@ -1478,7 +1389,7 @@ function paperattendance_read_csv($path, $csvname){
 				$arrayalumnos = array();
 				$init = ($page-1)*26+1;
 				$end = $page*26;
-				$count = 0; //start at one because $data[0] is the filename
+				$count = 1; //start at one because init starts at one
 				foreach ($studentlist as $student){
 					if($count>=$init && $count<=$end){
 						$line = array();
@@ -1506,6 +1417,133 @@ function paperattendance_read_csv($path, $csvname){
 		}
 		fclose($handle);
 	}
-	return true;
+	unlink($file);
+	return $qrinfo;
 }
 
+function paperattendance_runcsvproccessing($path, $filename){
+	global $CFG;
+// convertir el pdf en jpgs 
+// correr el command para formScanner .jar
+// correr la funcion paperattendance_read_csv ¿¿ nombre del output csv anterior y path?
+
+	// convert pdf to jpg
+	$pdf = new Imagick($path."/".$filename);
+	$pdftotalpages = (int)$pdf->getNumberImages();
+	
+	//$debugpath = $CFG -> dirroot. "/local/paperattendance/test/";
+	for($numpage = 0; $numpage < $pdftotalpages; $numpage++){
+		$page = new Imagick();
+		$page->setResolution( 300, 300);
+		$page->readImage($path."/".$filename."[$numpage]");
+		$page->setImageType( imagick::IMGTYPE_GRAYSCALE );
+		$page->setImageFormat('jpg');
+		$page->writeImage($path."/pdfimage_".$numpage."jpg");
+	}
+	
+	$pdf->clear();
+	$page->clear();
+	
+	//TODO: cambiar el installation path.
+	$command = 'java -jar ' . $CFG->dirroot . '/formscanner_installation_path/lib/formscanner-main-1.1.3 ' 
+				.$CFG->dirroot. 'local/paperattendance/omr/template.xtmpl ' .$path;
+				
+	$lastline = exec($command, $output, $return_var);
+	if($return_var != 0) {
+		$errormsg = $lastline;
+	}
+	else { throw new Exception('Error on formScanner command'); }
+	
+	//TODO: esto deberia ser sacar el csv recien creado, pero asi por mientras
+	foreach(glob("{$path}/*.csv") as $file)
+	{
+		$qrinfo = paperattendance_read_csv($file, $path, $file->get_filename(), $filename);
+		
+	}
+	
+	//delete all jpgs
+	foreach(glob("{$path}/*.jpg") as $file)
+	{
+		unlink($file);	
+	}
+	
+	return $qrinfo;
+}
+
+function paperattendance_savepdf($file, $path, $filename, $context, $contextsystem){
+		global $DB, $OUTPUT, $USER;
+		
+		$attendancepdffile = $path ."/unread/".$filename;
+		$originalfilename = $file->get_filename();
+		$file->copy_content_to($attendancepdffile);
+		
+		//TODO: confirmación tiene que ir igual. arreglar funcion get_qr_text para que funcione si o si.
+		$qrtext = paperattendance_get_qr_text($path."/unread/", $filename);
+		if($qrtext == "error"){
+			//delete the unused pdf
+			unlink($attendancepdffile);
+			return $OUTPUT->notification(get_string("filename", "local_paperattendance").$originalfilename."<br>".get_string("couldntreadqrcode", "local_paperattendance"));
+		}
+	
+		$pdf = new FPDI();
+		// get the page count
+		$pagecount = $pdf->setSourceFile($attendancepdffile);
+		if($pagecount){
+			
+			$qrinfo = paperattendance_runcsvproccessing($path, $filename);
+			$idcourse = $qrinfo[0];
+			
+			// iterate through all pages
+			for ($pageno = 1; $pageno <= $pagecount; $pageno++) {
+				// import a page
+				$templateid = $pdf->importPage($pageno);
+				// get the size of the imported page
+				$size = $pdf->getTemplateSize($templateid);
+				
+				// create a page (landscape or portrait depending on the imported page size)
+				if ($size['w'] > $size['h']) {
+					$pdf->AddPage('L', array($size['w'], $size['h']));
+				} else {
+					$pdf->AddPage('P', array($size['w'], $size['h']));
+				}
+				
+				// use the imported page
+				$pdf->useTemplate($templateid);
+			}
+			$pdf->Output($attendancepdffile, "F"); // Se genera el nuevo pdf.
+			
+			$fs = get_file_storage();
+			
+			$file_record = array(
+					'contextid' => $contextsystem->id,
+					'component' => 'local_paperattendance',
+					'filearea' => 'draft',
+					'itemid' => 0,
+					'filepath' => '/',
+					'filename' => $filename,
+					'timecreated' => time(),
+					'timemodified' => time(),
+					'userid' => $USER->id,
+					'author' => $USER->firstname." ".$USER->lastname,
+					'license' => 'allrightsreserved'
+			);
+			
+			// If the file already exists we delete it
+			if ($fs->file_exists($contextsystem->id, 'local_paperattendance', 'draft', 0, '/', $filename)) {
+				$previousfile = $fs->get_file($context->id, 'local_paperattendance', 'draft', 0, '/', $filename);
+				$previousfile->delete();
+			}
+			
+			// Info for the new file
+			$fileinfo = $fs->create_file_from_pathname($file_record, $attendancepdffile);
+			
+			return $OUTPUT->notification(get_string("filename", "local_paperattendance").$originalfilename."<br>".get_string("uploadsuccessful", "local_paperattendance"), "notifysuccess");
+			
+			}
+			else{
+				//delete unused pdf
+				unlink($attendancepdffile);
+				return $OUTPUT->notification(get_string("filename", "local_paperattendance").$originalfilename."<br>".$pdfprocessed);
+			}
+		
+}

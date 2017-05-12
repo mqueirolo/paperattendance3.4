@@ -110,7 +110,7 @@ if ($addform->get_data()) {
 		foreach ($files as $file) {
 			$time = strtotime(date("d-m-Y H:s:i"));
 			$filename = "paperattendance_".$courseid."_".$time."_".$filecount.".pdf";
-			$messages[] = paperattendance_uploadattendances($file, $path, $filename, $context, $contextsystem);
+			$messages[] = paperattendance_savepdf($file, $path, $filename, $context, $contextsystem);
 			$file->delete();
 			$filecount++;
 		}
