@@ -60,7 +60,7 @@ if(is_siteadmin()){
 	$ncourses = count($DB->get_records_sql($sqlcourses, array($year)));
 	$courses = $DB->get_records_sql($sqlcourses, array($year), $page*$perpage,$perpage);
 	$path = 1;
-	$categoryid = 1;
+	$categoryid = 406;
 }
 else{
 	//Query to get the category of the secretary
@@ -225,7 +225,7 @@ jQuery('#exampleModal').modal({
 	$( document ).on( "click", ".listcart", function() {
 		$(this).removeClass('icon-plus').addClass('icon-ok');
 		var courseid = $(this).attr('courseid');
-		jQuery.noConflict(); 
+
 		$('.quickprintappend').html('<center><img src="img/loading.gif"></center>');
 
 		$.ajax({

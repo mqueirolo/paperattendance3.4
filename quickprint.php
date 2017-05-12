@@ -105,17 +105,20 @@ if (paperattendance_checktoken($CFG->paperattendance_omegatoken)){
 	}
 	
 	//select teacher from course
-	$teachersquery = "SELECT u.id,
-				CONCAT (u.firstname, ' ', u.lastname) AS name,
-				GROUP_CONCAT(e.enrol) AS enrol
-				FROM {user_enrolments} ue
-				INNER JOIN {enrol} e ON (e.id = ue.enrolid AND e.courseid = ?)
-				INNER JOIN {context} c ON (c.contextlevel = 50 AND c.instanceid = e.courseid)
-				INNER JOIN {role_assignments} ra ON (ra.contextid = c.id AND ra.roleid = ? AND ra.userid = ue.userid)
-				INNER JOIN {user} u ON (ue.userid = u.id)
-				ORDER BY u.lastname";
+	$teachersquery = "SELECT u.id, 
+							c.id,
+							e.enrol,
+							CONCAT(u.firstname, ' ', u.lastname) AS name
+							FROM {user} u
+							INNER JOIN {user_enrolments} ue ON (ue.userid = u.id)
+							INNER JOIN {enrol} e ON (e.id = ue.enrolid)
+							INNER JOIN {role_assignments} ra ON (ra.userid = u.id)
+							INNER JOIN {context} ct ON (ct.id = ra.contextid)
+							INNER JOIN {course} c ON (c.id = ct.instanceid AND e.courseid = c.id)
+							INNER JOIN {role} r ON (r.id = ra.roleid)
+							WHERE r.id = 3 AND c.id = ? AND e.enrol = 'database'";
 	
-	$teachers = $DB->get_records_sql($teachersquery, array($courseid,'3'));
+	$teachers = $DB->get_records_sql($teachersquery, array($courseid));
 
 	$enrolincludes = explode("," ,$CFG->paperattendance_enrolmethod);
 	
