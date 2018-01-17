@@ -318,7 +318,7 @@ if ($action == "edit") {
 			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:3%;"));
 			
 			//We now create de four help modals
-			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="width: 50vw; z-index: -10; left:50%; top:50%; margin: -100px 0 0 -150px">
+			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
@@ -331,12 +331,12 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="width: 50vw; z-index: -10;">
-							    <div class="modal-dialog modal-sm">
+			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>fecha</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpdate.png">
+									  <img class="img-responsive" src="img/helpdate.png" height="237" width="687">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -344,12 +344,12 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$modulemodal = '<div class="modal fade" id="modulemodal" role="dialog" style="width: 50vw; z-index: -10;">
-							    <div class="modal-dialog modal-sm">
+			$modulemodal = '<div class="modal fade" id="modulemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>hora del módulo</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpmodule.png">
+									  <img class="img-responsive" src="img/helpmodule.png" height="238" width="685">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -357,12 +357,12 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$beginmodal = '<div class="modal fade" id="beginmodal" role="dialog" style="width: 50vw; z-index: -10;">
-							    <div class="modal-dialog modal-sm">
+			$beginmodal = '<div class="modal fade" id="beginmodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba el <strong>nº de inicio</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpbegin.png">
+									  <img class="img-responsive" src="img/helpbegin.png" height="237" width="692">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
