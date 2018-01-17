@@ -318,7 +318,7 @@ if ($action == "edit") {
 			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:3%;"));
 			
 			//We now create de four help modals
-			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="width: 50vw; z-index: -10;">
+			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="width: 50vw; z-index: -10; left:50%; top:50%; margin: -100px 0 0 -150px">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
