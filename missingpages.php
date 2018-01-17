@@ -318,7 +318,7 @@ if ($action == "edit") {
 			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:3%;"));
 			
 			//We now create de four help modals
-			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="z-index: -10; align-content:center;">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
@@ -331,7 +331,7 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="z-index: -10; align-content:center;">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
@@ -344,7 +344,7 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$modulemodal = '<div class="modal fade" id="modulemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+			$modulemodal = '<div class="modal fade" id="modulemodal" role="dialog" style="z-index: -10; align-content:center;">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
@@ -357,7 +357,7 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$beginmodal = '<div class="modal fade" id="beginmodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
+			$beginmodal = '<div class="modal fade" id="beginmodal" role="dialog" style="z-index: -10; align-content:center;">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
