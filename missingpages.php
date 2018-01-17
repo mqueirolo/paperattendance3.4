@@ -323,7 +323,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba el <strong>curso</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/hshortname.png"> 
+									  <img class="img-responsive" src="img/hshortname.png" height="258" width="703"> 
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
