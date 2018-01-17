@@ -319,7 +319,7 @@ if ($action == "edit") {
 			
 			//We now create de four help modals
 			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="width: 50vw; z-index: -10;">
-							    <div class="modal-dialog modal-sm">
+							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba el <strong>curso</strong> perteneciente a su lista escaneada</div>
