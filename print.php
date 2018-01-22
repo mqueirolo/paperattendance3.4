@@ -289,21 +289,21 @@ function comparedates(currentdate, datetwo){
 	}
 
 function showmodules(){
-	$('.felement').find('span').each(function( index ) {
+	$('.modules').find('span').each(function( index ) {
 		$(this).show();
 	});
 	}
 
 function hideallmodules(){
 	$( "form input:checkbox" ).prop( "checked", false);
-	$('.felement').find('span').each(function( index ) {
+	$('.modules').find('span').each(function( index ) {
 		$(this).hide();
 	});
 	}
 
 function hidemodules(){
 	var count = 0;
-	$('.felement').find('span').each(function( index ) {
+	$('.modules').find('span').each(function( index ) {
 
 		var result = $(this).text().split(':');
 
