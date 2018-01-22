@@ -106,8 +106,11 @@ class paperattendance_print_form extends moodleform {
 				ORDER BY initialtime ASC";
 		$modules = $DB->get_records_sql($modulesquery);
 		$arraymodules = array();
+		$mform->addElement("html", "class='modules'");
 		foreach ($modules as $module){
-			$arraymodules[] = $mform->createElement('advcheckbox', $module->id."*".$module->initialtime."*".$module->endtime , '',$module->initialtime);	
+			$mform->addElement("html", "<span>");
+			$arraymodules[] = $mform->createElement('advcheckbox', $module->id."*".$module->initialtime."*".$module->endtime , '',$module->initialtime);
+			$mform->addElement("html", "</span>");
 		}
 		$mform->addGroup($arraymodules, 'modules', get_string('modulescheckbox', 'local_paperattendance'));
 		$mform->addElement("hidden", "courseid", $courseid);
