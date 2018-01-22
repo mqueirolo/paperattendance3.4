@@ -269,7 +269,7 @@ function comparedates(currentdate, datetwo){
 		omegamodulescheck(datetwo, 'today');
 		var count = hidemodules();
 		var currentcount = 0;
-		$('.felement').find('span').each(function( index ) {
+		$('.modules').find('span').each(function( index ) {
 		currentcount++;
 		});
 		if(count == currentcount){
