@@ -264,12 +264,12 @@ $('#id_sessiondate_year').change(function() {
 
 function comparedates(currentdate, datetwo){
 	if (currentdate.getTime() === datetwo.getTime()){
-		$('.fitem').remove();
+		$('.modules').remove();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
 		var count = hidemodules();
 		var currentcount = 0;
-		$('.fitem').find('span').each(function( index ) {
+		$('.modules').find('span').each(function( index ) {
 		currentcount++;
 		});
 		if(count == currentcount){
@@ -277,33 +277,33 @@ function comparedates(currentdate, datetwo){
 		}
 	}
 	if (currentdate < datetwo ){
-		$('.fitem').remove();
+		$('.modules').remove();
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
 	if (currentdate > datetwo ){
-		$('.fitem').remove();
+		$('.modules').remove();
 		hideallmodules();
 		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
 	}
 	}
 
 function showmodules(){
-	$('.fitem').find('span').each(function( index ) {
+	$('.modules').find('span').each(function( index ) {
 		$(this).show();
 	});
 	}
 
 function hideallmodules(){
 	$( "form input:checkbox" ).prop( "checked", false);
-	$('.fitem').find('span').each(function( index ) {
+	$('.modules').find('span').each(function( index ) {
 		$(this).hide();
 	});
 	}
 
 function hidemodules(){
 	var count = 0;
-	$('.fitem').find('span').each(function( index ) {
+	$('.modules').find('span').each(function( index ) {
 
 		var result = $(this).text().split(':');
 
