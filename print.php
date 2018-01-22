@@ -264,7 +264,7 @@ $('#id_sessiondate_year').change(function() {
 
 function comparedates(currentdate, datetwo){
 	if (currentdate.getTime() === datetwo.getTime()){
-		$('.nomodulos').remove();
+		$('.modules').remove();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
 		var count = hidemodules();
@@ -277,12 +277,12 @@ function comparedates(currentdate, datetwo){
 		}
 	}
 	if (currentdate < datetwo ){
-		$('.nomodulos').remove();
+		$('.modules').remove();
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
 	if (currentdate > datetwo ){
-		$('.nomodulos').remove();
+		$('.modules').remove();
 		hideallmodules();
 		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
 	}
