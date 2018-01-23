@@ -307,7 +307,7 @@ if ($action == "edit") {
 			/*Inputs of the form to edit a missing page plus the modals help buttons*/
 			
 			//Input for the Shortname of the course like : 2113-V-ECO121-1-1-2017 
-			$inputs = html_writer::div('<label for="course">Shortname del Curso:</label><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><span class="input-group-addon"></span><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button>',"form-group", array("style"=>"float:left; margin-left:10%"));
+			$inputs = html_writer::div('<label for="course">Shortname del Curso:</label><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><span class="input-group-addon"></span><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button>',"input-group", array("style"=>"float:left; margin-left:10%"));
 			//Input for the Date of the list like: 01-08-2017
 			$inputs .= html_writer::div('<label for="date">Fecha:</label><input type="text" class="form-control" id="date" placeholder="01-08-2017"><button id="d" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#datemodal">?</button>',"form-group", array("style"=>"float:left; margin-left:10%"));
 			//Input for the time of the module of the session like: 16:30
