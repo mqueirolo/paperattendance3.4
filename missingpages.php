@@ -331,7 +331,7 @@ if ($action == "edit") {
 							      </div>
 							    </div>
 							  </div>';
-			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="z-index: -10; align-content:center;">
+			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="width: 50vw; z-index: -10; align-content:center;">
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
