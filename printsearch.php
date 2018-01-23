@@ -230,6 +230,7 @@ $carttable->head = array(
 );
 $carttable->id = "carttable";
 
+//Cart modal
 $formmodal = '<div class="modal fade bs-example-modal-lg" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" style="display: none">
 			  <div class="modal-dialog modal-lg" role="document">
 			    	<div class="modal-content">
@@ -248,6 +249,7 @@ $formmodal = '<div class="modal fade bs-example-modal-lg" id="formModal" tabinde
 	  		</div>
 		</div>';
 
+//Quick print modal
 $pdfmodal = '<div class="modal fade bs-example-modal-lg" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" style="display: none;">
 			  <div class="modal-dialog modal-lg" role="document">
 			    	<div class="modal-content">
