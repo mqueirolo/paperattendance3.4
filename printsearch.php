@@ -209,9 +209,10 @@ foreach($courses as $course){
 echo $OUTPUT->header();
 echo html_writer::div(get_string("searchprinthelp","local_paperattendance"),"alert alert-info", array("role"=>"alert"));
 $filterinput = html_writer::empty_tag("input", array( "id"=>"filter", "type"=>"text", "style"=>"float:left; width:25%"));
-$cartbutton = html_writer::nonempty_tag("button", get_string("listscart","local_paperattendance"),  array( "id"=>"cartbutton", "style"=>"float:right; margin-right:6%; padding-bottom:50px"));
-$shoppingcarticon = html_writer::nonempty_tag("i", ' ', array("class"=>"icon-shopping-cart", "style"=>"float:right"));
-echo html_writer::div($filterinput.$shoppingcarticon.$cartbutton, "topbarmenu");
+$shoppingcarticon = html_writer::nonempty_tag("i", ' ', array("class"=>"icon-shopping-cart"));
+$cartbutton = html_writer::nonempty_tag("button", $shoppingcarticon.get_string("listscart","local_paperattendance"),  array( "id"=>"cartbutton", "style"=>"float:right; margin-right:6%; margin-bottom:20px"));
+
+echo html_writer::div($filterinput.$cartbutton, "topbarmenu");
 
 if ($ncourses>0){
 	echo html_writer::table($table);
