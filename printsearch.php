@@ -54,14 +54,14 @@ if(is_siteadmin()){
 				INNER JOIN {course} c ON (c.id = ct.instanceid)
 				INNER JOIN {role} r ON (r.id = ra.roleid AND r.id IN ( 3, 4))
 				INNER JOIN {course_categories} as cat ON (cat.id = c.category)
-				WHERE c.timecreated > ? AND c.idnumber > 0 
+				WHERE c.timecreated > ? AND c.idnumber > 0
 				GROUP BY c.id
 				ORDER BY c.fullname";
 	$year = strtotime("1 January".(date('Y'))); Poner aqui la fecha que se desea para elegir los cursos
 	$ncourses = count($DB->get_records_sql($sqlcourses, array($year)));
 	$courses = $DB->get_records_sql($sqlcourses, array($year), $page*$perpage,$perpage);
 	$paths = 1;
-*/	
+*/
 	//Query to get all the courses for the admin
 	$sqlcourses = "SELECT c.id,
 				c.fullname,
@@ -88,7 +88,7 @@ else{
 					INNER JOIN {role_assignments} ra ON (ra.userid = ?)
 					INNER JOIN {role} r ON (r.id = ra.roleid AND r.shortname = ?)
 					INNER JOIN {context} co ON (co.id = ra.contextid  AND  co.instanceid = cc.id  )";
-	
+
 	$categoryparams = array($USER->id, "secrepaper");
 	$categorys = $DB->get_records_sql($sqlcategory, $categoryparams);
 	$categoryscount = count($categorys);
@@ -230,7 +230,7 @@ $carttable->head = array(
 );
 $carttable->id = "carttable";
 
-$formmodal = '<div class="modal fade bs-example-modal-lg" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" style="display: none; width:80%; margin-left:-45%">
+$formmodal = '<div class="modal fade bs-example-modal-lg" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" style="display: none">
 			  <div class="modal-dialog modal-lg" role="document">
 			    	<div class="modal-content">
 			    		<div class="modal-header">
@@ -253,7 +253,7 @@ $pdfmodal = '<div class="modal fade bs-example-modal-lg" id="pdfModal" tabindex=
 			    	<div class="modal-content">
 			    		<div class="modal-header">
 			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        		<h4 class="modal-title" id="pdfModalLabel">Lists pdf</h4>
+			        		<h4 class="modal-title" id="pdfModalLabel">Listas Pdf</h4>
 			      		</div>
 		      		<div class="modal-body pdflists" style="height:70vh">
 		      		</div>
@@ -330,8 +330,8 @@ $( document ).ready(function() {
 			    success: function (response) {
 				    var arr = response;
 				    //Pre selected modules
-				    var modulesselect = <?php echo json_encode($modulesselect);?>;	 
-				    var selectedmodules = [];   
+				    var modulesselect = <?php echo json_encode($modulesselect);?>;
+				    var selectedmodules = [];
 					jQuery('#carttable').append("<tr class='cart-tr' courseid="+courseid+"><td>"+arr['course']+"</td><td>"+arr['description']+"</td><td><input class='datepicker' type='date' size='10' value='"+today+"' courseid='"+courseid+"'></td><td>"+modulesselect+"</td><td>"+arr['requestor']+"</td><td><i class='icon icon-remove' courseid='"+courseid+"'></i></td></tr>");
 					if(!arr["modules"]){
 						jQuery('.cart-tr[courseid='+courseid+']').find('.selectpicker option[value="no"]').attr("selected", "selected");
@@ -378,15 +378,15 @@ $( document ).ready(function() {
 				$('.pdflists').html(response);
 				if(response == "There's nothing to print for today"){
 					$('.printbutton').attr("disabled", true);
-		    	}  	
+		    	}
 				else{
 					$('.printbutton').removeAttr("disabled");
 				}
 		    }
 		});
-		
-		jQuery('#pdfModal').modal('show'); 
-	
+
+		jQuery('#pdfModal').modal('show');
+
 	});
 	//When the background is clicked, the modal must hide
 	$( document ).on( "click", ".modal-backdrop", function() {
@@ -420,7 +420,7 @@ $( document ).ready(function() {
 		updatelistsmodules(mods, cid);
 		enableprintbutton();
 	});
-	//If some remove icon is clicked, it should be deleted that list from the lists array 
+	//If some remove icon is clicked, it should be deleted that list from the lists array
 	$( document ).on( "click", ".icon-remove", function() {
 		var tr = $(this).closest("tr");
 		var cid = tr.attr("courseid");
@@ -436,7 +436,7 @@ $( document ).ready(function() {
 	});
 	//If print button is clicked, then the pdf with all lists is generated
 	$( document ).on( "click", ".printbutton", function() {
-		jQuery('#pdfModal').modal('show'); 
+		jQuery('#pdfModal').modal('show');
 		$('.pdflists').html('<center><img src="img/loading.gif"></center>');
 		$.ajax({
 		    type: 'POST',
@@ -472,13 +472,13 @@ $( document ).ready(function() {
 						}
 					});
 		        	var num = "<td>"+count+"</td>";
-			        var his = "<td><a href='history.php?courseid="+field['id']+"'>"+field['fullname']+"</a></td>"; 
+			        var his = "<td><a href='history.php?courseid="+field['id']+"'>"+field['fullname']+"</a></td>";
 			        var teacher = "<td><span class='teacher' teacherid='"+field['teacherid']+"'>"+field['teacher']+"</span></td>";
 			        var category = "<td>"+field['name']+"</td>";
 		        	var printicon = "<td><a href='print.php?courseid="+field['id']+"&categoryid="+path+"'>"+print+"</a></td>";
 		        	var quickprinticon = "<td><i class='icon icon-print quickprint' clicked='0' courseid='"+field['id']+"'></i></td>";
 		        	$table.append("<tr class='ajaxtr'>"+num+his+teacher+category+printicon+carticon+quickprinticon+"</tr>");
-					count++;	
+					count++;
 		        });
 		    }
 		});
@@ -493,7 +493,7 @@ $( document ).ready(function() {
 		    url: 'ajax/ajaxquerys.php',
 		    data: {
 			      'action' : 'cartlist',
-			      'courseid' : courseid,	
+			      'courseid' : courseid,
 		    	  'diasemana': dayofweek
 		    	},
 		    success: function (response) {
@@ -516,7 +516,7 @@ $( document ).ready(function() {
 			    	enableprintbutton();
 			    	updatelistsmodules(mods, courseid);
 		    	}
-		    }  	
+		    }
 		});
 	}
     //This function is to update the lists array with some new selected module
@@ -570,5 +570,5 @@ $( document ).ready(function() {
 
 		return lists.length;
 	}
-		
+
 </script>
