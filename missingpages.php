@@ -336,7 +336,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>fecha</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpdate.png" height="237" width="687">
+									  <img class="img-responsive" src="img/helpdate.png">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
