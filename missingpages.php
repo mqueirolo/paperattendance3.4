@@ -307,7 +307,9 @@ if ($action == "edit") {
 			/*Inputs of the form to edit a missing page plus the modals help buttons*/
 			
 			//Input for the Shortname of the course like : 2113-V-ECO121-1-1-2017 
-			$inputs = html_writer::div('<label for="course">Shortname del Curso:</label><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button>',"form-group", array("style"=>"float:left; margin-left:10%"));
+			//$shmodalbutton = html_writer::('<button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button>');
+			$shmodalbutton= html_writer::nonempty_tag("button","?",  array( "id"=>"sn", "class" => "btn btn-info btn-xs", "data-toggle" => "modal", "data-target"=>"#shortnamemodal" ));
+			$inputs = html_writer::div('<label for="course"><<?php echo $shmodalbutton;?>Shortname del Curso:</label><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017">',"form-group", array("style"=>"float:left; margin-left:10%"));
 			//Input for the Date of the list like: 01-08-2017
 			$inputs .= html_writer::div('<label for="date">Fecha:</label><input type="text" class="form-control" id="date" placeholder="01-08-2017"><button id="d" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#datemodal">?</button>',"form-group", array("style"=>"float:left; margin-left:10%"));
 			//Input for the time of the module of the session like: 16:30
@@ -336,7 +338,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>fecha</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpdate.png">
+									  <img class="img-responsive" src="img/helpdate.png" style="margin:auto;">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -349,7 +351,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>hora del módulo</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpmodule.png">
+									  <img class="img-responsive" src="img/helpmodule.png" style="margin:auto;">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -362,7 +364,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba el <strong>nº de inicio</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpbegin.png">
+									  <img class="img-responsive" src="img/helpbegin.png" style="margin:auto;">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
