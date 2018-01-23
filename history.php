@@ -897,7 +897,7 @@ $( document ).ready(function() {
 				div.html(settext);
 				div.attr("setstudentpresence", setpresence);
 
-				div.parent().parent().find('.smallicon').first().attr({
+				div.parent().parent().find('.icon fa fa-times text-danger fa-fw ').first().attr({
 					  src: icon
 				});
 		    }
