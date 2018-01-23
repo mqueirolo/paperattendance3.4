@@ -236,7 +236,7 @@ $formmodal = '<div class="modal fade bs-example-modal-lg" id="formModal" tabinde
 			    	<div class="modal-content">
 			    		<div class="modal-header">
 			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        		<h4 class="modal-title" id="formModalLabel">Lists cart</h4>
+			        		<h4 class="modal-title" id="formModalLabel">Carrito de listas</h4>
 			      		</div>
 		      		<div class="modal-body" style="height:70vh">
 						'.html_writer::table($carttable).'
