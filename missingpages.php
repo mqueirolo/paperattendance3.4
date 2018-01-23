@@ -322,7 +322,7 @@ if ($action == "edit") {
 							    <div class="modal-dialog modal-lg">
 							      <div class="modal-content">
 							        <div class="modal-body">
-									  <div class="alert alert-info" height="258" width="703">Escriba el <strong>curso</strong> perteneciente a su lista escaneada</div>
+									  <div class="alert alert-info">Escriba el <strong>curso</strong> perteneciente a su lista escaneada</div>
 									  <img class="img-responsive" src="img/hshortname.png"> 
 							        </div>
 							        <div class="modal-footer">
@@ -332,7 +332,7 @@ if ($action == "edit") {
 							    </div>
 							  </div>';
 			$datemodal = '<div class="modal fade" id="datemodal" role="dialog" style="z-index: -10; align-content:center;">
-							    <div class="modal-dialog modal-lg">
+							    <div class="modal-dialog modal-sm">
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>fecha</strong> perteneciente a su lista escaneada</div>
@@ -349,7 +349,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba la <strong>hora del módulo</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpmodule.png" height="238" width="685">
+									  <img class="img-responsive" src="img/helpmodule.png">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -362,7 +362,7 @@ if ($action == "edit") {
 							      <div class="modal-content">
 							        <div class="modal-body">
 									  <div class="alert alert-info">Escriba el <strong>nº de inicio</strong> perteneciente a su lista escaneada</div>
-									  <img class="img-responsive" src="img/helpbegin.png" height="237" width="692">
+									  <img class="img-responsive" src="img/helpbegin.png">
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
