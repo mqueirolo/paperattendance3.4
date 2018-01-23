@@ -263,7 +263,7 @@ $('#id_sessiondate_year').change(function() {
 
 
 function comparedates(currentdate, datetwo){
-	if (currentdate.getTime() === datetwo.getTime()){
+	if (currentdate.getTime() + 3600*24 === datetwo.getTime()){
 		$('.checkboxgroup1').detach();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
@@ -276,12 +276,12 @@ function comparedates(currentdate, datetwo){
 		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
 		}
 	}
-	if (currentdate < datetwo ){
+	if (currentdate 3600*24< datetwo ){
 		$('.checkboxgroup1').detach();
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
-	if (currentdate > datetwo ){
+	if (currentdate 3600*24> datetwo ){
 		$('.checkboxgroup1').detach();
 		hideallmodules();
 		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
