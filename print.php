@@ -268,6 +268,9 @@ $('#id_sessiondate_year').change(function() {
 function comparedates(currentdate, datetwo){
 	
 	if (currentdate.getTime() === datetwo.getTime()){
+		if ($("#id_error_")){
+			$("#id_error_").show();
+		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
@@ -285,12 +288,18 @@ function comparedates(currentdate, datetwo){
 		
 	}
 	if (currentdate < datetwo ){
+		if ($("#id_error_")){
+			$("#id_error_").show();
+		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		$(".alert-warning").hide();
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
 	if (currentdate > datetwo ){
+		if ($("#id_error_")){
+			$("#id_error_").hide();
+		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		hideallmodules();
 		$(".alert-warning").show();
