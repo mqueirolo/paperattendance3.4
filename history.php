@@ -895,7 +895,7 @@ $( document ).ready(function() {
 				div.html(settext);
 				div.attr("setstudentpresence", setpresence);
 
-				div.parent().parent().find('.icon').first().toggleClass(icon);
+				div.parent().parent().find('.icon').first().toggleClass("icon fa fa-times text-danger fa-fw");
 		    }
 		});
 	});
