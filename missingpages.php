@@ -306,7 +306,7 @@ if ($action == "edit") {
 			
 			/*Inputs of the form to edit a missing page plus the modals help buttons*/
 			
-			///Input for the Shortname of the course like : 2113-V-ECO121-1-1-2017 
+			//Input for the Shortname of the course like : 2113-V-ECO121-1-1-2017 
 			$inputs = html_writer::div('<div><div class="col-sm-6"><label for="course">Shortname del Curso:</label><div class="input-group"><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><div class="input-group-btn"><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button></div></div></div>',"row", array("style"=>"float:left; margin-left:5%; margin-right:5%;margin-bottom:2%"));
 			//Input for the Date of the list like: 01-08-2017
 			$inputs .= html_writer::div('<div class="col-sm-6"><label for="date">Fecha:</label><div class="input-group"><input type="text" class="form-control" id="date" placeholder="01-08-2017"><div class="input-group-btn"><button id="d" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#datemodal">?</button></div></div></div></div>');
