@@ -875,7 +875,7 @@ $( document ).ready(function() {
 		if(studentpresence == 0){
 			var settext = "Presente";
 			var setpresence = 1;
-			var icon = moodleurl+"/local/paperattendance/img/invalid.svg";
+			var icon = 'icon fa fa-check text-success fa-fw ';
 		}
 		else{
 			var settext = "Ausente";
