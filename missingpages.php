@@ -309,7 +309,7 @@ if ($action == "edit") {
 			///Input for the Shortname of the course like : 2113-V-ECO121-1-1-2017 
 			$inputs = html_writer::div('<div class="form-group"><div class="col-sm-6"<label for="course">Shortname del Curso:</label><div class="input-group"><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><div class="input-group-btn"><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button></div></div></div>',"row");
 			//Input for the Date of the list like: 01-08-2017
-			$inputs .= html_writer::div('<div class="col-sm-6"><label for="date">Fecha:</label><div class="input-group"><input type="text" class="form-control" id="date" placeholder="01-08-2017"><div class="input-group-btn"><button id="d" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#datemodal">?</button></div></div></div></div>');
+			$inputs .= html_writer::div('<div class="col-sm-6"><label for="date">Fecha:</label><div class="input-group"><input type="text" class="form-control" id="date" placeholder="01-08-2017"><div class="input-group-btn"><button id="d" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#datemodal">?</button></div></div></div></div>',"form-group");
 			//Input for the time of the module of the session like: 16:30
 			$inputs .= html_writer::div('<label for="module">Hora Módulo:</label><input type="text" class="form-control" id="module" placeholder="16:30"><button id="m" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modulemodal">?</button>',"form-group", array("style"=>"float:left; margin-left:10%"));
 			//Input for the list begin number like: 27
