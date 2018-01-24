@@ -268,8 +268,8 @@ $('#id_sessiondate_year').change(function() {
 function comparedates(currentdate, datetwo){
 	
 	if (currentdate.getTime() === datetwo.getTime()){
-		if ($("#id_error_")){
-			$("#id_error_").show();
+		if ($("div[id=id_error_]")){
+			$("div[id=id_error_]").show();
 		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
@@ -288,8 +288,8 @@ function comparedates(currentdate, datetwo){
 		
 	}
 	if (currentdate < datetwo ){
-		if ($("#id_error_")){
-			$("#id_error_").show();
+		if ($("div[id=id_error_]")){
+			$("div[id=id_error_]").show();
 		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		$(".alert-warning").hide();
@@ -297,8 +297,8 @@ function comparedates(currentdate, datetwo){
 		omegamodulescheck(datetwo, 'showall');
 	}
 	if (currentdate > datetwo ){
-		if ($("#id_error_")){
-			$("#id_error_").hide();
+		if ($("div[id=id_error_]")){
+			$("div[id=id_error_]").hide();
 		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		hideallmodules();
