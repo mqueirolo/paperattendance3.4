@@ -880,7 +880,7 @@ $( document ).ready(function() {
 		else{
 			var settext = "Ausente";
 			var setpresence = 0;
-			var icon = moodleurl+"/local/paperattendance/img/valid.svg";
+			var icon = "icon fa fa-times text-danger fa-fw";
 		}
 
 		$.ajax({
@@ -895,9 +895,7 @@ $( document ).ready(function() {
 				div.html(settext);
 				div.attr("setstudentpresence", setpresence);
 
-				div.parent().parent().find('.icon').first().attr({
-					  src: icon
-				});
+				div.parent().parent().find('.icon').first().toggleClass(icon);
 		    }
 		});
 	});
