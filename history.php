@@ -156,7 +156,7 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 					$synchronizedicon = new pix_icon("i/checkpermissions", get_string('synchronized', 'local_paperattendance'));
 				}
 				else{
-					$synchronizedicon = new pix_icon("i/scheduled", get_string('unsynchronized', 'local_paperattendance'));
+					$synchronizedicon = new pix_icon("y/loading", get_string('unsynchronized', 'local_paperattendance'));
 				}
 				$synchronizediconaction = $OUTPUT->action_icon(
 						$urlomegasync,
