@@ -263,6 +263,8 @@ $('#id_sessiondate_year').change(function() {
 
 
 function comparedates(currentdate, datetwo){
+	$("input[class=checkboxgroup1][type=checkbox]").parent().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+	$(".alert-warning").hide();
 	if (currentdate.getTime() === datetwo.getTime()){
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
@@ -273,18 +275,20 @@ function comparedates(currentdate, datetwo){
 		currentcount++;
 		});
 		if(count == currentcount){
-		$('.checkboxgroup1').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+			$(".alert-warning").show();		
 		}
+		
 	}
 	if (currentdate < datetwo ){
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
+		$(".alert-warning").hide();
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
 	if (currentdate > datetwo ){
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		hideallmodules();
-		$('.checkboxgroup1').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+		$(".alert-warning").show();
 	}
 	}
 
