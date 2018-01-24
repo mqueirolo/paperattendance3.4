@@ -315,7 +315,7 @@ if ($action == "edit") {
 			//Input for the list begin number like: 27
 			$inputs .= html_writer::div('<div class="col-sm-6"><label for="begin">Inicio Lista:</label><div class="input-group"><input type="text" class="form-control" id="begin" placeholder="27"><div class="input-group-btn"><button id="b" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#beginmodal">?</button></div></div></div></div>');
 			//Input fot the submit button of the form
-			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:2%;"));
+			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:7%; margin-top:2%;"));
 			
 			//We now create de four help modals
 			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="z-index: -10; align-content:center;">
