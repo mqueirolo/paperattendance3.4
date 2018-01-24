@@ -307,15 +307,15 @@ if ($action == "edit") {
 			/*Inputs of the form to edit a missing page plus the modals help buttons*/
 			
 			///Input for the Shortname of the course like : 2113-V-ECO121-1-1-2017 
-			$inputs = html_writer::div('<div><div class="col-sm-6"><label for="course">Shortname del Curso:</label><div class="input-group"><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><div class="input-group-btn"><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button></div></div></div>',"row", array("style"=>"float:left; margin-left:5%"));
+			$inputs = html_writer::div('<div><div class="col-sm-6"><label for="course">Shortname del Curso:</label><div class="input-group"><input type="text" class="form-control" id="course" placeholder="2113-V-ECO121-1-1-2017"><div class="input-group-btn"><button id="sn" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#shortnamemodal">?</button></div></div></div>',"row", array("style"=>"float:left; margin-left:5%; margin-right:5%;margin-bottom:2%"));
 			//Input for the Date of the list like: 01-08-2017
 			$inputs .= html_writer::div('<div class="col-sm-6"><label for="date">Fecha:</label><div class="input-group"><input type="text" class="form-control" id="date" placeholder="01-08-2017"><div class="input-group-btn"><button id="d" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#datemodal">?</button></div></div></div></div>');
 			//Input for the time of the module of the session like: 16:30
-			$inputs .= html_writer::div('<div><div class="col-sm-6"><label for="module">Hora Módulo:</label><div class="input-group"><input type="text" class="form-control" id="module" placeholder="16:30"><div class="input-group-btn"><button id="m" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modulemodal">?</button></div></div></div>',"row", array("style"=>"float:left; margin-left:5%"));
+			$inputs .= html_writer::div('<div><div class="col-sm-6"><label for="module">Hora Módulo:</label><div class="input-group"><input type="text" class="form-control" id="module" placeholder="16:30"><div class="input-group-btn"><button id="m" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modulemodal">?</button></div></div></div>',"row", array("style"=>"float:left; margin-left:5%; margin-right:5%;"));
 			//Input for the list begin number like: 27
 			$inputs .= html_writer::div('<div class="col-sm-6"><label for="begin">Inicio Lista:</label><div class="input-group"><input type="text" class="form-control" id="begin" placeholder="27"><div class="input-group-btn"><button id="b" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#beginmodal">?</button></div></div></div></div>');
 			//Input fot the submit button of the form
-			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:3%;"));
+			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:2%;"));
 			
 			//We now create de four help modals
 			$shortnamemodal = '<div class="modal fade" id="shortnamemodal" role="dialog" style="z-index: -10; align-content:center;">
