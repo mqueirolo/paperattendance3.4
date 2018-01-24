@@ -176,13 +176,7 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 					$msgstatus = get_string('presentattendance', 'local_paperattendance');
 					$setstudentpresence = 1;
 				}
-				
-				
-				$statusiconaction = $OUTPUT->pix_icon(
-						$urlattendance,
-						$statusicon
-						);
-				$statusiconaction = $OUTPUT->image_icon(
+				$statusiconaction = $OUTPUT->action_icon(
 						$urlattendance,
 						$statusicon
 						);
