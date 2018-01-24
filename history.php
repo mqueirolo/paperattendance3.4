@@ -875,12 +875,13 @@ $( document ).ready(function() {
 		if(studentpresence == 0){
 			var settext = "Presente";
 			var setpresence = 1;
-			var icon = 'icon fa fa-check text-success fa-fw ';
+			var icon = 'icon fa fa-times text-danger fa-fw';
+			
 		}
 		else{
 			var settext = "Ausente";
 			var setpresence = 0;
-			var icon = 'icon fa fa-times text-danger fa-fw';
+			var icon = 'icon fa fa-check text-success fa-fw ';
 		}
 
 		$.ajax({
