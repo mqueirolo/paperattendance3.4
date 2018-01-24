@@ -279,6 +279,9 @@ function comparedates(currentdate, datetwo){
 		if(count == currentcount){
 			$(".alert-warning").show();		
 		}
+		else{
+			$(".alert-warning").hide();
+			}
 		
 	}
 	if (currentdate < datetwo ){
