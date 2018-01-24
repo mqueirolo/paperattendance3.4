@@ -313,7 +313,7 @@ if ($action == "edit") {
 			//Input for the time of the module of the session like: 16:30
 			$inputs .= html_writer::div('<div><div class="col-sm-6"><label for="module">Hora Módulo:</label><div class="input-group"><input type="text" class="form-control" id="module" placeholder="16:30"><div class="input-group-btn"><button id="m" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modulemodal">?</button></div></div></div>',"row", array("style"=>"float:left; margin-left:5%"));
 			//Input for the list begin number like: 27
-			$inputs .= html_writer::div('<div class="col-sm-6"><label for="begin">Inicio Lista:</label><div class="input-group"><input type="text" class="form-control" id="begin" placeholder="27"><div class="input-group-btn"<button id="b" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#beginmodal">?</button></div></div></div></div>');
+			$inputs .= html_writer::div('<div class="col-sm-6"><label for="begin">Inicio Lista:</label><div class="input-group"><input type="text" class="form-control" id="begin" placeholder="27"><div class="input-group-btn"><button id="b" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#beginmodal">?</button></div></div></div></div>');
 			//Input fot the submit button of the form
 			$inputs .= html_writer::div('<button type="submit" id="confirm" class="btn btn-default">Continuar</button>',"form-group", array("style"=>"float:right; margin-right:5%; margin-top:3%;"));
 			
