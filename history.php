@@ -163,7 +163,7 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 						$synchronizedicon
 						);
 				
-				//Define presente or ausente icon
+				///Define presente or ausente icon
 				$urlattendance = new moodle_url("#");
 				
 				if($attendance->status){
