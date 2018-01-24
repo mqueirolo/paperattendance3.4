@@ -172,7 +172,7 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 					$setstudentpresence = 0; 
 				}
 				else{
-					$statusicon = new pix_icon("/local/paperattendance/img/invalid.svg", get_string('absentattendance', 'local_paperattendance'));
+					$statusicon = new image_url("/local/paperattendance/img/invalid.svg", get_string('absentattendance', 'local_paperattendance'));
 					$msgstatus = get_string('presentattendance', 'local_paperattendance');
 					$setstudentpresence = 1;
 				}
