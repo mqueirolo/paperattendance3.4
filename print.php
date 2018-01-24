@@ -269,7 +269,7 @@ function comparedates(currentdate, datetwo){
 		omegamodulescheck(datetwo, 'today');
 		var count = hidemodules();
 		var currentcount = 0;
-		$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
+		$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		currentcount++;
 		});
 		if(count == currentcount){
@@ -289,21 +289,21 @@ function comparedates(currentdate, datetwo){
 	}
 
 function showmodules(){
-	$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		$(this).show();
 	});
 	}
 
 function hideallmodules(){
 	$( "form input:checkbox" ).prop( "checked", false);
-	$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		$(this).hide();
 	});
 	}
 
 function hidemodules(){
 	var count = 0;
-	$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 
 		var result = $(this).text().split(':');
 
