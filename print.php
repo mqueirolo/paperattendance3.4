@@ -241,6 +241,9 @@ datetwo.setDate(selectdate);
 datetwo.setMonth(selectmonth);
 datetwo.setFullYear(selectyear);
 
+$("input[class=checkboxgroup1][type=checkbox]").parent().parent().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+$(".alert-warning").hide();
+
 comparedates(currentdate, datetwo);
 
 $('#id_sessiondate_day').change(function() {
@@ -263,8 +266,7 @@ $('#id_sessiondate_year').change(function() {
 
 
 function comparedates(currentdate, datetwo){
-	$("input[class=checkboxgroup1][type=checkbox]").parent().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
-	$(".alert-warning").hide();
+	
 	if (currentdate.getTime() === datetwo.getTime()){
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
