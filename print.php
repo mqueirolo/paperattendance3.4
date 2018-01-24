@@ -263,47 +263,47 @@ $('#id_sessiondate_year').change(function() {
 
 
 function comparedates(currentdate, datetwo){
-	if (currentdate.getTime() + 3600*24 === datetwo.getTime()){
-		$('.checkboxgroup1').detach();
+	if (currentdate.getTime() === datetwo.getTime()){
+		$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
 		var count = hidemodules();
 		var currentcount = 0;
-		$('.checkboxgroup1').children().each(function( index ) {
+		$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
 		currentcount++;
 		});
 		if(count == currentcount){
-		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+		$('.checkboxgroup1').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
 		}
 	}
-	if (currentdate 3600*24< datetwo ){
-		$('.checkboxgroup1').detach();
+	if (currentdate < datetwo ){
+		$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
-	if (currentdate 3600*24> datetwo ){
-		$('.checkboxgroup1').detach();
+	if (currentdate > datetwo ){
+		$("input[class=checkboxgroup1][type=checkbox]").remove();
 		hideallmodules();
-		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+		$('.checkboxgroup1').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
 	}
 	}
 
 function showmodules(){
-	$('.checkboxgroup1').children().each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
 		$(this).show();
 	});
 	}
 
 function hideallmodules(){
 	$( "form input:checkbox" ).prop( "checked", false);
-	$('.checkboxgroup1').children().each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
 		$(this).hide();
 	});
 	}
 
 function hidemodules(){
 	var count = 0;
-	$('.checkboxgroup1').children().each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").each(function( index ) {
 
 		var result = $(this).text().split(':');
 
