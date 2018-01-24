@@ -178,7 +178,7 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 				}
 				
 				
-				$statusiconaction = $OUTPUT->action_icon(
+				$statusiconaction = $OUTPUT->image_icon(
 						$urlattendance,
 						$statusicon
 						);
@@ -721,7 +721,7 @@ else if ($isstudent) {
 				else{
 					$statusicon = new pix_icon("i/invalid", get_string('absentattendance', 'local_paperattendance'));
 				}
-				$statusiconaction = $OUTPUT->action_icon(
+				$statusiconaction = $OUTPUT->image_icon(
 						$urlattendance,
 						$statusicon
 						);
@@ -877,12 +877,12 @@ $( document ).ready(function() {
 		if(studentpresence == 0){
 			var settext = "Presente";
 			var setpresence = 1;
-			var icon = moodleurl+"/pix/i/invalid.svg";
+			var icon = moodleurl+"/local/paperattendance/img/invalid.svg";
 		}
 		else{
 			var settext = "Ausente";
 			var setpresence = 0;
-			var icon = moodleurl+"/pix/i/valid.svg";
+			var icon = moodleurl+"/local/paperattendance/img/valid.svg";
 		}
 
 		$.ajax({
