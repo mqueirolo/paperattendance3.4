@@ -243,6 +243,8 @@ datetwo.setFullYear(selectyear);
 
 $("input[class=checkboxgroup1][type=checkbox]").parent().parent().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
 $(".alert-warning").hide();
+$("input[type=submit]").attr("disabled", "disabled");
+
 
 comparedates(currentdate, datetwo);
 
