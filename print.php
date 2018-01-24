@@ -268,9 +268,6 @@ $('#id_sessiondate_year').change(function() {
 function comparedates(currentdate, datetwo){
 	
 	if (currentdate.getTime() === datetwo.getTime()){
-		if ($("div[id=id_error_]")){
-			$("div[id=id_error_]").show();
-		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
@@ -280,11 +277,20 @@ function comparedates(currentdate, datetwo){
 		currentcount++;
 		});
 		if(count == currentcount){
-			$(".alert-warning").show();		
+			$(".alert-warning").show();
+			if ($("div[id=id_error_]")){
+				$("div[id=id_error_]").show();
+			}		
 		}
 		else{
-			$(".alert-warning").hide();
+			if ($("div[id=id_error_]")){
+				$("div[id=id_error_]").show();
 			}
+			$(".alert-warning").hide();
+			if ($("input[type=submit]").attr("disabled")){
+				$("input[type=submit]").removeAttr("disabled");     
+			}
+		}
 		
 	}
 	if (currentdate < datetwo ){
@@ -293,6 +299,9 @@ function comparedates(currentdate, datetwo){
 		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		$(".alert-warning").hide();
+		if ($("input[type=submit]").attr("disabled")){
+			$("input[type=submit]").removeAttr("disabled");     
+		}
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
@@ -300,9 +309,14 @@ function comparedates(currentdate, datetwo){
 		if ($("div[id=id_error_]")){
 			$("div[id=id_error_]").hide();
 		}
+		if ($("input[type=submit]").attr("disabled")){
+			$("input[type=submit]").removeAttr("disabled");     
+		}
 		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		hideallmodules();
 		$(".alert-warning").show();
+		$("input[type=submit]").attr("disabled", "disabled")
+		
 	}
 	}
 
