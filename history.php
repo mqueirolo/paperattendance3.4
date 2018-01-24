@@ -167,17 +167,21 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 				$urlattendance = new moodle_url("#");
 				
 				if($attendance->status){
-					$statusicon = new pix_icon("fa fa-check", get_string('presentattendance', 'local_paperattendance'));
+					$statusicon = new pix_icon("i/valid", get_string('presentattendance', 'local_paperattendance'));
 					$msgstatus = get_string('absentattendance', 'local_paperattendance');
 					$setstudentpresence = 0; 
 				}
 				else{
-					$statusicon = new pix_icon("fa fa-times", get_string('absentattendance', 'local_paperattendance'));
+					$statusicon = new pix_icon("i/invalid", get_string('absentattendance', 'local_paperattendance'));
 					$msgstatus = get_string('presentattendance', 'local_paperattendance');
 					$setstudentpresence = 1;
 				}
 				
 				
+				$statusiconaction = $OUTPUT->pix_icon(
+						$urlattendance,
+						$statusicon
+						);
 				$statusiconaction = $OUTPUT->image_icon(
 						$urlattendance,
 						$statusicon
