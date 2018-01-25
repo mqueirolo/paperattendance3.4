@@ -50,7 +50,7 @@ class paperattendance_print_form extends moodleform {
 		$counterforarray = 1;
 		foreach($param as $p){
 			$parameters[$counterforarray] = $p;
-			$counterforarray += 1
+			$counterforarray += 1;
 		}
 		$teachers = $DB->get_records_sql($teachersquery, array($parameters));
 		
