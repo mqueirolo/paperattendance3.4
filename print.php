@@ -281,8 +281,9 @@ function comparedates(currentdate, datetwo){
 		if(count == currentcount){
 			$(".alert-warning").show();
 			if ($("div[id=id_error_]")){
-				$("div[id=id_error_]").show();
-			}		
+				$("div[id=id_error_]").hide();
+			}	
+			$("input[type=submit]").attr("disabled", "disabled");	
 		}
 		else{
 			if ($("div[id=id_error_]")){
