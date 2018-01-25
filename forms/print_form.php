@@ -47,7 +47,7 @@ class paperattendance_print_form extends moodleform {
 							GROUP BY u.id";
 		$parameters = array();
 		$parameters[0] = $courseid;
-		$counterforarray = 1
+		$counterforarray = 1;
 		foreach($param as $p){
 			$parameters[$counterforarray] = $p;
 			$counterforarray += 1
