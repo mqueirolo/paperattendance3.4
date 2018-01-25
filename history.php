@@ -471,7 +471,7 @@ if( $isteacher || is_siteadmin($USER) || has_capability('local/paperattendance:p
 						"attendanceid" => $attendance->id,
 						"courseid" => $courseid
 				));
-				$studentsattendanceicon_attendance = new pix_icon("t/hide", get_string('seestudents', 'local_paperattendance'));
+				$studentsattendanceicon_attendance = new pix_icon("t/preview", get_string('seestudents', 'local_paperattendance'));
 				$studentsattendanceaction_attendance = $OUTPUT->action_icon(
 						$studentsattendanceurl_attendance,
 						$studentsattendanceicon_attendance
