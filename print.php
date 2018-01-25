@@ -214,6 +214,9 @@ selectyear =  parseFloat($('#id_sessiondate_year option:selected').val());
 datetwo.setDate(selectdate);
 datetwo.setMonth(selectmonth);
 datetwo.setFullYear(selectyear);
+$("input[class=checkboxgroup1][type=checkbox]").parent().parent().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+$(".alert-warning").hide();
+$("input[type=submit]").attr("disabled", "disabled");
 comparedates(currentdate, datetwo);
 $('#id_sessiondate_day').change(function() {
 	  var selected = $('#id_sessiondate_day option:selected').val();
@@ -231,44 +234,74 @@ $('#id_sessiondate_year').change(function() {
 	 comparedates(currentdate, datetwo);
 	});
 function comparedates(currentdate, datetwo){
+	
 	if (currentdate.getTime() === datetwo.getTime()){
-		$('.nomodulos').remove();
+		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		showmodules();	
 		omegamodulescheck(datetwo, 'today');
 		var count = hidemodules();
 		var currentcount = 0;
-		$('.felement').find('span').each(function( index ) {
+		$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		currentcount++;
 		});
 		if(count == currentcount){
-		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+			$(".alert-warning").show();
+			if ($("div[id=id_error_]")){
+				$("div[id=id_error_]").hide();
+			}	
+			$("input[type=submit]").attr("disabled", "disabled");	
 		}
+		else{
+			if ($("div[id=id_error_]")){
+				$("div[id=id_error_]").show();
+			}
+			$(".alert-warning").hide();
+			if ($("input[type=submit]").attr("disabled")){
+				$("input[type=submit]").removeAttr("disabled");     
+			}
+		}
+		
 	}
 	if (currentdate < datetwo ){
-		$('.nomodulos').remove();
+		if ($("div[id=id_error_]")){
+			$("div[id=id_error_]").show();
+		}
+		//$("input[class=checkboxgroup1][type=checkbox]").remove();
+		$(".alert-warning").hide();
+		if ($("input[type=submit]").attr("disabled")){
+			$("input[type=submit]").removeAttr("disabled");     
+		}
 		showmodules();
 		omegamodulescheck(datetwo, 'showall');
 	}
 	if (currentdate > datetwo ){
-		$('.nomodulos').remove();
+		if ($("div[id=id_error_]")){
+			$("div[id=id_error_]").hide();
+		}
+		if ($("input[type=submit]").attr("disabled")){
+			$("input[type=submit]").removeAttr("disabled");     
+		}
+		//$("input[class=checkboxgroup1][type=checkbox]").remove();
 		hideallmodules();
-		$('.fgroup').first().append('<div class="nomodulos alert alert-warning">No hay módulos disponibles para la fecha seleccionada.</div>');
+		$(".alert-warning").show();
+		$("input[type=submit]").attr("disabled", "disabled")
+		
 	}
 	}
 function showmodules(){
-	$('.felement').find('span').each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		$(this).show();
 	});
 	}
 function hideallmodules(){
 	$( "form input:checkbox" ).prop( "checked", false);
-	$('.felement').find('span').each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		$(this).hide();
 	});
 	}
 function hidemodules(){
 	var count = 0;
-	$('.felement').find('span').each(function( index ) {
+	$("input[class=checkboxgroup1][type=checkbox]").parent().each(function( index ) {
 		var result = $(this).text().split(':');
 		//compare time
 		var compare = new Date();
