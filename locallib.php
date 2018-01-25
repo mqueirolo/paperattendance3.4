@@ -178,6 +178,9 @@ function paperattendance_draw_student_list($pdf, $logofilepath, $course, $studen
 	$pdf->SetXY($left, $top);
 	$pdf->Write(1, core_text::strtoupper(get_string('course') . ': ' . $coursetrimmedtext));
 	
+	$enrolincludes = explode("," ,$CFG->paperattendance_enrolmethod);
+	list($sqlin, $param) = $DB->get_in_or_equal($enrolincludes);
+	
 	$teachersquery = "SELECT u.id, 
 					e.enrol,
 					CONCAT(u.firstname, ' ', u.lastname) AS name
@@ -188,10 +191,18 @@ function paperattendance_draw_student_list($pdf, $logofilepath, $course, $studen
 					INNER JOIN {context} ct ON (ct.id = ra.contextid)
 					INNER JOIN {course} c ON (c.id = ct.instanceid AND e.courseid = c.id)
 					INNER JOIN {role} r ON (r.id = ra.roleid)
-					WHERE ct.contextlevel = '50' AND r.id = 3 AND c.id = ? AND e.enrol = 'database'
+					WHERE ct.contextlevel = '50' AND r.id = 3 AND c.id = ? AND e.enrol $sqlin
 					GROUP BY u.id";
 
-	$teachers = $DB->get_records_sql($teachersquery, array($course->id));
+	$parameters = array();
+	$parameters[0] = $courseid;
+	$counterforarray = 1;
+	foreach($param as $p){
+		$parameters[$counterforarray] = $p;
+		$counterforarray += 1;
+	}
+	
+	$teachers = $DB->get_records_sql($teachersquery, $parameters);
 	
 	$teachersnames = array();
 	foreach($teachers as $teacher) {
