@@ -52,7 +52,7 @@ class paperattendance_print_form extends moodleform {
 			$parameters[$counterforarray] = $p;
 			$counterforarray += 1;
 		}
-		$teachers = $DB->get_records_sql($teachersquery, array($parameters));
+		$teachers = $DB->get_records_sql($teachersquery, $parameters);
 		
 		$assistantsquery = "SELECT u.id,
 							e.enrol,
