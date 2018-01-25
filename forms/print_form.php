@@ -31,21 +31,28 @@ class paperattendance_print_form extends moodleform {
 		$mform = $this->_form;
 		$instance = $this->_customdata;
 		$courseid = $instance["courseid"];
-
+		$enrolincludes = explode("," ,$CFG->paperattendance_enrolmethod);
+		list($sqlin, $param) = $DB->get_in_or_equal($enrolincludes);
 		$teachersquery = "SELECT u.id,
-							e.enrol,
-							CONCAT(u.firstname, ' ', u.lastname) AS name
-							FROM {user} u
-							INNER JOIN {user_enrolments} ue ON (ue.userid = u.id)
-							INNER JOIN {enrol} e ON (e.id = ue.enrolid)
-							INNER JOIN {role_assignments} ra ON (ra.userid = u.id)
-							INNER JOIN {context} ct ON (ct.id = ra.contextid)
-							INNER JOIN {course} c ON (c.id = ct.instanceid AND e.courseid = c.id)
-							INNER JOIN {role} r ON (r.id = ra.roleid)
-							WHERE ct.contextlevel = '50' AND r.id = 3 AND c.id = ? AND e.enrol = 'database'
-							GROUP BY u.id";
-
-		$teachers = $DB->get_records_sql($teachersquery, array($courseid));
+		e.enrol,
+		CONCAT(u.firstname, ' ', u.lastname) AS name
+		FROM {user} u
+		INNER JOIN {user_enrolments} ue ON (ue.userid = u.id)
+		INNER JOIN {enrol} e ON (e.id = ue.enrolid)
+		INNER JOIN {role_assignments} ra ON (ra.userid = u.id)
+		INNER JOIN {context} ct ON (ct.id = ra.contextid)
+		INNER JOIN {course} c ON (c.id = ct.instanceid AND e.courseid = c.id)
+		INNER JOIN {role} r ON (r.id = ra.roleid)
+		WHERE ct.contextlevel = '50' AND r.id = 3 AND c.id = ? AND e.enrol $sqlin
+		GROUP BY u.id";
+		$parameters = array();
+		$parameters[0] = $courseid;
+		$counterforarray = 1;
+		foreach($param as $p){
+			$parameters[$counterforarray] = $p;
+			$counterforarray += 1;
+		}
+		$teachers = $DB->get_records_sql($teachersquery, $parameters);
 
 		$assistantsquery = "SELECT u.id,
 							e.enrol,
@@ -65,13 +72,11 @@ class paperattendance_print_form extends moodleform {
 		$arrayteachers = array();
 		$arrayteachers["no"] = get_string('selectteacher', 'local_paperattendance');
 
-		$enrolincludes = explode("," ,$CFG->paperattendance_enrolmethod);
-
 		foreach ($teachers as $teacher){
 				
 			$enrolment = explode(",", $teacher->enrol);
 			// Verifies that the teacher is enrolled through a valid enrolment and that we haven't added him yet.
-			if (count(array_intersect($enrolment, $enrolincludes)) == 0 || isset($arrayteachers[$teacher->id])) {
+			if (isset($arrayteachers[$teacher->id])) {
 				continue;
 			}
 			$arrayteachers[$teacher->id] = $teacher->name;
@@ -107,7 +112,7 @@ class paperattendance_print_form extends moodleform {
 		$modules = $DB->get_records_sql($modulesquery);
 		$arraymodules = array();
 		foreach ($modules as $module){
-			$arraymodules[] = $mform->createElement('advcheckbox', $module->id."*".$module->initialtime."*".$module->endtime , '',$module->initialtime);
+			$arraymodules[] = $mform->createElement('advcheckbox', $module->id."*".$module->initialtime."*".$module->endtime , '',$module->initialtime, array("group" => 1));
 		}
 		$mform->addGroup($arraymodules, 'modules', get_string('modulescheckbox', 'local_paperattendance'));
 		$mform->addElement("hidden", "courseid", $courseid);
