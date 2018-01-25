@@ -45,8 +45,14 @@ class paperattendance_print_form extends moodleform {
 							INNER JOIN {role} r ON (r.id = ra.roleid)
 							WHERE ct.contextlevel = '50' AND r.id = 3 AND c.id = ? AND e.enrol $sqlin
 							GROUP BY u.id";
-		
-		$teachers = $DB->get_records_sql($teachersquery, array($courseid, $param));
+		$parameters = array();
+		$parameters[0] = $courseid;
+		$counterforarray = 1
+		foreach($param as $p){
+			$parameters[$counterforarray] = $p;
+			$counterforarray += 1
+		}
+		$teachers = $DB->get_records_sql($teachersquery, array($parameters));
 		
 		$assistantsquery = "SELECT u.id,
 							e.enrol,
