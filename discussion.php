@@ -21,6 +21,7 @@
 * @package    local
 * @subpackage paperattendance
 * @copyright  2017 Cristobal Silva (cristobal.isilvap@gmail.com)
+* @copyright  2018 Matías Queirolo (mqueirolo@alumnos.uai.cl) 
 * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 */
 //Belongs to plugin PaperAttendance
