@@ -53,7 +53,7 @@ class paperattendance_print_form extends moodleform {
 			$counterforarray += 1;
 		}
 		$teachers = $DB->get_records_sql($teachersquery, $parameters);
-
+		var_dump($teachers);
 		$assistantsquery = "SELECT u.id,
 							e.enrol,
 							CONCAT(u.firstname, ' ', u.lastname) AS name

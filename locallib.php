@@ -202,6 +202,7 @@ function paperattendance_draw_student_list($pdf, $logofilepath, $course, $studen
 		$counterforarray += 1;
 	}
 	$teachers = $DB->get_records_sql($teachersquery, $parameters);
+	var_dump($teachers);
 	
 	$teachersnames = array();
 	foreach($teachers as $teacher) {
