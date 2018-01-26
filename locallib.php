@@ -208,15 +208,11 @@ function paperattendance_draw_student_list($pdf, $logofilepath, $course, $studen
 		$teachersnames[] = $teacher->name;
 	}
 	
-	var_dump($teachersnames);
-	
 	$teacherstring = implode(',', $teachersnames);
-	var_dump($teacherstring);
 	$schedule = explode("*", $modules);
 	$stringmodules = $schedule[1]." - ".$schedule[2];
 	// Write teacher name.
 	$teachertrimmedtext = trim_text($teacherstring,30);
-	var_dump($teachertrimmedtext);
 	$top += 4;
 	$pdf->SetXY($left, $top);
 	$pdf->Write(1, core_text::strtoupper(get_string('teacher', 'mod_emarking') . ': ' . $teachertrimmedtext));
