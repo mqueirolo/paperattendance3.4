@@ -664,7 +664,7 @@ else if ($isstudent) {
 				$urlicon,
 				$validicon
 				);
-		$invalidicon = new pix_icon("i/invalid", get_string('absentattendance', 'local_paperattendance'));
+		$invalidicon = new pix_icon("i/grade_incorrect", get_string('absentattendance', 'local_paperattendance'));
 		$invalidiconaction = $OUTPUT->action_icon(
 				$urlicon,
 				$invalidicon
@@ -718,7 +718,7 @@ else if ($isstudent) {
 					$statusicon = new pix_icon("i/valid", get_string('presentattendance', 'local_paperattendance'));
 				}
 				else{
-					$statusicon = new pix_icon("i/invalid", get_string('absentattendance', 'local_paperattendance'));
+					$statusicon = new pix_icon("i/grade_incorrect", get_string('absentattendance', 'local_paperattendance'));
 				}
 				$statusiconaction = $OUTPUT->action_icon(
 						$urlattendance,

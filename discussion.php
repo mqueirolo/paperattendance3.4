@@ -291,7 +291,7 @@ if($isstudent){
 				$urlicon,
 				$validicon
 				);
-		$invalidicon = new pix_icon("i/invalid", get_string('synchronized', 'local_paperattendance'));
+		$invalidicon = new pix_icon("i/grade_incorrect", get_string('synchronized', 'local_paperattendance'));
 		$invalidiconaction = $OUTPUT->action_icon(
 				$urlicon,
 				$invalidicon
