@@ -658,6 +658,7 @@ else if ($isstudent) {
 				$urlicon,
 				$synchronizedicon
 				);
+		
 		$validicon = new pix_icon("i/valid", get_string('presentattendance', 'local_paperattendance'));
 		$validiconaction = $OUTPUT->action_icon(
 				$urlicon,
@@ -719,7 +720,7 @@ else if ($isstudent) {
 				else{
 					$statusicon = new pix_icon("i/invalid", get_string('absentattendance', 'local_paperattendance'));
 				}
-				$statusiconaction = $OUTPUT->image_icon(
+				$statusiconaction = $OUTPUT->action_icon(
 						$urlattendance,
 						$statusicon
 						);
