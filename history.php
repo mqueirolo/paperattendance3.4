@@ -876,7 +876,7 @@ $( document ).ready(function() {
 		if(studentpresence == 0){
 			var settext = "Presente";
 			var setpresence = 1;
-			var icon = 'icon fa fa-times text-danger fa-fw';
+			var icon = 'icon fa fa-remove text-danger fa-fw';
 			
 		}
 		else{
