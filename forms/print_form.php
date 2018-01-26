@@ -108,7 +108,7 @@ class paperattendance_print_form extends moodleform {
 
 		$modulesquery = "SELECT *
 				FROM {paperattendance_module}
-				ORDER BY initialtime ASC";
+				ORDER BY name ASC";
 		$modules = $DB->get_records_sql($modulesquery);
 		var_dump($modules);
 		$arraymodules = array();
