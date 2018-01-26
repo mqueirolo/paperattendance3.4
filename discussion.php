@@ -280,7 +280,7 @@ if($isstudent){
 	if($action == "view"){
 		//icons
 		$urlicon = new moodle_url("#");
-		$synchronizedicon = new pix_icon("i/scheduled", get_string('synchronized', 'local_paperattendance'));
+		$synchronizedicon = new pix_icon("i/duration", get_string('synchronized', 'local_paperattendance'));
 		$synchronizediconaction = $OUTPUT->action_icon(
 				$urlicon,
 				$synchronizedicon
